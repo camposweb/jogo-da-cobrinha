@@ -21,7 +21,38 @@ function criarCobrinha(){
     }
 }
 
+document.addEventListener('keydown', update);
+
+function update(event){
+    if (event.keyCode == 65 && direction != 'right') {
+        direction = 'left';
+    }
+    if (event.keyCode == 68 && direction != 'left') {
+        direction = 'right';
+    }
+    if (event.keyCode == 83 && direction != 'up') {
+        direction = 'down';
+    }
+    if (event.keyCode == 87 && direction != 'down') {
+        direction = 'up';
+    }
+}
+
 function iniciarJogo(){
+
+    if (snake[0].x > 15 * box && direction == 'right') {
+        snake[0].x = 0;
+    }
+    if (snake[0].x < 0 * box && direction == 'left') {
+        snake[0].x = 16 * box;
+    }
+    if (snake[0].y < 0 * box && direction == 'up') {
+        snake[0].y = 16 * box;
+    }
+    if (snake[0].y > 15 * box && direction == 'down') {
+        snake[0].y = 0;
+    }
+
     criarBG();
     criarCobrinha();
 
